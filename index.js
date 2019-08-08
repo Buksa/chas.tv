@@ -27,19 +27,21 @@ var UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, l
 var page = require('movian/page');
 var http = require('movian/http');
 
-
-
-
-
 // Create the service (ie, icon on home screen)
 require('movian/service').create(plugin.title, PREFIX + ":start", "video", true, LOGO);
+settings.globalSettings(plugin.id, plugin.title, LOGO, plugin.synopsis);
+settings.createInfo("info", LOGO, "Plugin developed by " + plugin.author);
+settings.createDivider("Settings:");
+settings.createString("domain", "Адресс:", "http://glazandroid.com/andr/chas-json.php", function (v) {
+    service.domain = v;
+});
 
 // Landing page
 new page.Route(PREFIX + ":start", function (page) {
   page.type = "directory";
   page.metadata.title = PREFIX;
   page.metadata.icon = LOGO;
-  res = http.request('http://glazandroid.com/andr/chas-json.php', {
+  res = http.request(service.domain, {
     headers: {
       'User-Agent': UA
     }
