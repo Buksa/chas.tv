@@ -32,7 +32,7 @@ require('movian/service').create(plugin.title, PREFIX + ":start", "video", true,
 settings.globalSettings(plugin.id, plugin.title, LOGO, plugin.synopsis);
 settings.createInfo("info", LOGO, "Plugin developed by " + plugin.author);
 settings.createDivider("Settings:");
-settings.createString("domain", "Адресс:", "http://glazandroid.com/andr/chas-json.php", function (v) {
+settings.createString("domain", "Адресс:", "http://glazandroid.com/andr/json-test.php", function (v) {
     service.domain = v;
 });
 
